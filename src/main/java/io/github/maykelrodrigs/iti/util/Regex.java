@@ -1,0 +1,21 @@
+package io.github.maykelrodrigs.iti.util;
+
+import java.util.regex.Pattern;
+
+import static java.util.Objects.isNull;
+
+public final class Regex {
+
+    Regex() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
+
+    public static boolean isValid(final String regex, final String value) {
+        if (isNull(regex) || isNull(value)) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(value).matches();
+    }
+
+}
