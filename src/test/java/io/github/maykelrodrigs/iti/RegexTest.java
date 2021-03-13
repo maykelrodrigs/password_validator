@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 
 public class RegexTest {
 
+    private static final String REGEX = "^[A-Za-z]{2}";
+
     @Test
     void when_regex_is_valid_return_true() {
-        String regex = "^[A-Za-z]{2}";
         String value = "ab";
-        boolean result = Regex.isValid(regex, value);
+        boolean result = Regex.isValid(REGEX, value);
         Assertions.assertTrue(result);
     }
 
     @Test
     void when_regex_is_false_return_false() {
-        String regex = "^[A-Za-z]{2}";
         String value = "abc";
-        boolean result = Regex.isValid(regex, value);
+        boolean result = Regex.isValid(REGEX, value);
         Assertions.assertFalse(result);
     }
 
@@ -31,9 +31,28 @@ public class RegexTest {
 
     @Test
     void when_value_is_null_return_false() {
-        String regex = "^[A-Za-z]{2}";
-        boolean result = Regex.isValid(regex, null);
+        boolean result = Regex.isValid(REGEX, null);
         Assertions.assertFalse(result);
+    }
+
+    @Test
+    void when_value_non_duplicate_char_return_false() {
+        String value = "abc123!@#$%^&*()-+";
+        boolean result = Regex.hasDuplicateChar(value);
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void when_value_is_null_duplicate_char_return_false() {
+        boolean result = Regex.hasDuplicateChar(null);
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void when_value_is_duplicate_char_return_true() {
+        String value = "abc1-23!@#$%^&*()-+";
+        boolean result = Regex.hasDuplicateChar(value);
+        Assertions.assertTrue(result);
     }
 
 }

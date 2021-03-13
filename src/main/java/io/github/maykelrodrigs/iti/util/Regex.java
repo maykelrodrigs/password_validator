@@ -18,4 +18,12 @@ public final class Regex {
         return pattern.matcher(value).matches();
     }
 
+    public static boolean hasDuplicateChar(final String value) {
+        if (isNull(value)) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile("^(?:([\\w-+!@#$%^&*()])(?!.*\\1))*$");
+        return !pattern.matcher(value).matches();
+    }
+
 }
