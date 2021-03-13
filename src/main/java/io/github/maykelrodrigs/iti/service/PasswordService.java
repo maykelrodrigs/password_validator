@@ -9,7 +9,7 @@ public class PasswordService {
     private static final String REGEX_PASSWORD = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()-+])(?=.*[\\W_])\\S{9,}$";
 
     public boolean validate(final String password) {
-        if (Regex.hasDuplicateChar(password)) {
+        if (!Regex.hasNoDuplicateChar(password)) {
             return false;
         }
         return Regex.isValid(REGEX_PASSWORD, password);

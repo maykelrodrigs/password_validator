@@ -4,7 +4,7 @@ import io.github.maykelrodrigs.iti.util.Regex;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class RegexTest {
+class RegexTest {
 
     private static final String REGEX = "^[A-Za-z]{2}";
 
@@ -36,23 +36,23 @@ public class RegexTest {
     }
 
     @Test
-    void when_value_non_duplicate_char_return_false() {
+    void when_value_non_duplicate_char_return_true() {
         String value = "abc123!@#$%^&*()-+";
-        boolean result = Regex.hasDuplicateChar(value);
-        Assertions.assertFalse(result);
+        boolean result = Regex.hasNoDuplicateChar(value);
+        Assertions.assertTrue(result);
     }
 
     @Test
     void when_value_is_null_duplicate_char_return_false() {
-        boolean result = Regex.hasDuplicateChar(null);
+        boolean result = Regex.hasNoDuplicateChar(null);
         Assertions.assertFalse(result);
     }
 
     @Test
-    void when_value_is_duplicate_char_return_true() {
+    void when_value_is_duplicate_char_return_false() {
         String value = "abc1-23!@#$%^&*()-+";
-        boolean result = Regex.hasDuplicateChar(value);
-        Assertions.assertTrue(result);
+        boolean result = Regex.hasNoDuplicateChar(value);
+        Assertions.assertFalse(result);
     }
 
 }
