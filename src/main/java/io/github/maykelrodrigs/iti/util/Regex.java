@@ -1,29 +1,18 @@
 package io.github.maykelrodrigs.iti.util;
 
-import java.util.regex.Pattern;
+public enum Regex {
 
-import static java.util.Objects.isNull;
+    DUPLICATE_CHAR("^(?:([\\w-+!@#$%^&*()])(?!.*\\1))*$"),
+    PASSWORD("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()-+])(?=.*[\\W_])\\S{9,}$");
 
-public final class Regex {
+    private final String value;
 
-    Regex() {
-        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    Regex(String value) {
+        this.value = value;
     }
 
-    public static boolean isValid(final String regex, final String value) {
-        if (isNull(regex) || isNull(value)) {
-            return false;
-        }
-        Pattern pattern = Pattern.compile(regex);
-        return pattern.matcher(value).matches();
-    }
-
-    public static boolean hasNoDuplicateChar(final String value) {
-        if (isNull(value)) {
-            return false;
-        }
-        Pattern pattern = Pattern.compile("^(?:([\\w-+!@#$%^&*()])(?!.*\\1))*$");
-        return pattern.matcher(value).matches();
+    public String value() {
+        return value;
     }
 
 }
