@@ -11,7 +11,7 @@ public class PasswordService {
         if (!RegexUtil.hasNoDuplicateChar(password)) {
             return false;
         }
-        return RegexUtil.isValid(Regex.PASSWORD.value(), password);
+        return RegexUtil.isValid(Regex.PASSWORD, password);
     }
 
 }

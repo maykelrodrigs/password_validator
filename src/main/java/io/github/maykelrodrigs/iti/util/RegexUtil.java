@@ -10,11 +10,11 @@ public final class RegexUtil {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 
-    public static boolean isValid(final String regex, final String value) {
+    public static boolean isValid(final Regex regex, final String value) {
         if (isNull(regex) || isNull(value)) {
             return false;
         }
-        Pattern pattern = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(regex.value());
         return pattern.matcher(value).matches();
     }
 
